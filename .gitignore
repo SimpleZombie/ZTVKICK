@@ -1,0 +1,20 @@
+# shows found on the server by server/fill-catalog.py (kept per server, never shipped)
+data/catalog-extra.js
+data/catalog-extra.js.tmp
+data/catalog.js.bak
+# written by server/check-videos.py (server only)
+data/catalog-skip.js
+data/catalog-skip.js.tmp
+data/catalog-check.json
+# zips you build to copy up to the server
+*.zip
+# never commit the stream key (it lives in /etc/ztv/stream.env on the server)
+stream.env
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc
+.vscode/
+.idea/

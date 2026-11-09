@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 116" role="img" aria-label="ZTV Network" class="mark ztv-network-mark">
+<defs><linearGradient id="ztvg" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#c4ff78"/><stop offset="1" stop-color="#53fc18"/></linearGradient></defs>
+<path d="M10 17H102L111 27V97H10Z" fill="#0b110c" stroke="#a6ed65" stroke-width="4"/>
+<path d="M18 25H94V38L44 79H96V91H18V78L68 37H18Z" fill="url(#ztvg)"/>
+<path d="M118 26H326V38H118Z" fill="#a6ed65"/>
+<path d="M118 44H207V60H177V92H148V60H118Z" fill="#f2f4e9"/>
+<path d="M212 44H244L269 78L294 44H326L281 93H256Z" fill="#f2f4e9"/>
+<path d="M118 100H326" stroke="#a6ed65" stroke-width="3"/>
+<text x="120" y="113" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#a6ed65" letter-spacing="4.8">NETWORK TELEVISION</text>
+</svg>
