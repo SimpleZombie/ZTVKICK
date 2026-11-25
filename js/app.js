@@ -28,13 +28,17 @@ function build(){
   CHS=L}
 function pos(c,t){var off=(((t-EPOCH)/1000)%c.total+c.total)%c.total,lo=0,hi=c.st.length-1;while(lo<hi){var m=(lo+hi+1)>>1;if(c.st[m]<=off)lo=m;else hi=m-1}return{i:lo,start:t-(off-c.st[lo])*1000}}
 function progs(c,ws,we){var p=pos(c,ws),i=p.i,s=p.start,out=[],n=c.ord.length;while(s<we&&out.length<14){var it=c.ord[i%n];out.push({it:it,s:s,e:s+it.d*1000});s+=it.d*1000;i++}return out}
+/* the channel blurb on screen is just its first sentence; the full text stays in the data and !guide */
+function firstLine(t){var m=String(t).match(/^.*?[.!?](\s|$)/);return (m?m[0]:t).trim()}
 function renderGuide(){
-  var now=Date.now(),ws=Math.floor(now/1800000)*1800000,we=ws+WIN,h="";lastR=now;
+  var now=Date.now(),ws=Math.floor(now/1800000)*1800000,we=ws+WIN,h="",pin="";lastR=now;
   for(var i=0;i<4;i++)$("t"+i).textContent=fmtT(ws+i*1800000);
   CHS.forEach(function(c,k){var cells="";
     progs(c,ws,we).forEach(function(p){var l=Math.max(p.s,ws),r=Math.min(p.e,we),w=(r-l)/WIN*100;if(w<1.5)return;
       cells+='<div class="pc'+(p.s<=now&&now<p.e?' now':'')+'" style="left:'+((l-ws)/WIN*100)+'%;width:'+w+'%">'+esc(p.it.t)+'</div>'});
-    h+='<div class="row pr'+(k===curCh?' tuned':'')+'" onclick="tune('+k+')"><div class="c chan"><i>'+pad(c.num)+'</i><img class="lg ztv-channel-icon" alt="" loading="lazy" decoding="async" src="'+logoFor(c)+'"><span class="cn">'+esc(c.name)+'</span></div><div class="progs">'+cells+'</div></div>'});
+    var row='<div class="row pr'+(k===curCh?' tuned':'')+'" onclick="tune('+k+')"><div class="c chan"><i>'+pad(c.num)+'</i><img class="lg ztv-channel-icon" alt="" loading="lazy" decoding="async" src="'+logoFor(c)+'"><span class="cn">'+esc(c.name)+'</span></div><div class="progs">'+cells+'</div></div>';
+    if(k===curCh)pin=row;else h+=row});   /* the tuned channel stays pinned above the scrolling rows */
+  var pe=$("pin");if(pe)pe.innerHTML=pin;
   var sc=$("rows");sc.className="scroll anim";sc.style.animationDuration=Math.max(60,CHS.length*3)+"s";sc.innerHTML=h+h}
 function hiss(ms){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.resume)AC.resume();
   var n=AC.sampleRate*ms/1000|0,b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*.25;
@@ -88,8 +92,8 @@ function prog(){if(!cur)return;var now=Date.now(),tot=cur.it.d*1000,el=Math.max(
   $("el").textContent=hms(el);$("fill").style.width=(el/tot*100)+"%";$("ncount").textContent=hms(tot-el)}
 function panels(){if(!cur)return;var c=cur.c,n=c.ord.length,i=cur.p.i,end=cur.p.start+cur.it.d*1000,a=c.ord[(i+1)%n],b=c.ord[(i+2)%n];
   $("ichan").textContent=c.name;$("inum").textContent="CH "+pad(c.num);$("chn").textContent="CH "+pad(c.num);
-  $("ides").textContent=c.desc||(Math.round(c.total/3600)+" hours of programming");$("ilogo").src=logoFor(c);
-  $("ntitle").textContent=cur.it.t;$("ndesc").textContent=Math.round(cur.it.d/60)+" min \u00b7 archive.org/details/"+cur.it.a;
+  $("ides").textContent=c.desc?firstLine(c.desc):(Math.round(c.total/3600)+" hours of programming");$("ilogo").src=logoFor(c);
+  $("ntitle").textContent=cur.it.t;$("ndesc").textContent=Math.round(cur.it.d/60)+" min";
   $("u1t").textContent=fmtT(end);$("u1").textContent=a.t;$("u2t").textContent=fmtT(end+a.d*1000);$("u2").textContent=b.t;prog()}
 function tune(k){if(k<0||k>=CHS.length)return;curCh=k;curId=CHS[k].id;curKey="";renderGuide();load()}
 function step(d){tune((curCh+d+CHS.length)%CHS.length)}
@@ -110,7 +114,7 @@ function toggleEd(){var e=$("ed");e.hidden=!e.hidden;if(!e.hidden)$("orig").valu
 function rebuild(){build();var k=CHS.findIndex(function(c){return c.id===curId});if(k<0)k=0;curCh=k;renderGuide();if(CHS[k].id!==curId){curId=CHS[k].id;curKey="";load()}}
 function saveOrig(){try{localStorage.setItem(KEY,$("orig").value)}catch(e){}rebuild()}
 function resetOrig(){try{localStorage.removeItem(KEY)}catch(e){}$("orig").value=DEF;rebuild()}
-document.addEventListener("keydown",function(e){var t=e.target.tagName;if(t==="INPUT"||t==="TEXTAREA"||e.ctrlKey||e.metaKey||e.altKey)return;var k=e.key.toLowerCase();if(k==="b"){bumpTest();return}if(k==="a"){adBreak();return}if(k==="h"){if(!TK.on)takeover("photo");return}if(k==="d"){deadAir();return}if(k==="o"){signOff();return}if(k==="i"){signOn();return}if(k==="k"){recapShow();return}if(k==="j"){raidAlert("NIGHTSHAMBLER",42);return}if(k==="z"){zombieAlert();return}if(k==="y"){textBump({user:"braineater99",text:"i left the tv on for you"});return}if(k==="c"){chatPeek();return}if(k==="t"){takeoverTest();return}if(k==="x"){toggleView();return}if(k==="u"){subAlert(["BRAINEATER99","VHS_GHOUL"][Math.random()*2|0],Math.random()<.5?1:6);return}if(k==="g"){giftAlert("NIGHTSHAMBLER",Math.random()<.5?2:20);return}if(k==="v"){voteStart();return}if(k==="l"){weatherTest();return}if(k==="f"){followAlert(["BRAINEATER99","VHS_GHOUL","NIGHTSHAMBLER"][Math.random()*3|0]);return}if(k.length===1&&"+=-_m".indexOf(k)>=0){audKey(k);return}
+document.addEventListener("keydown",function(e){var t=e.target.tagName;if(t==="INPUT"||t==="TEXTAREA"||e.ctrlKey||e.metaKey||e.altKey)return;var k=e.key.toLowerCase();if(k==="b"){bumpTest();return}if(k==="a"){adBreak();return}if(k==="d"){deadAir();return}if(k==="o"){signOff();return}if(k==="i"){signOn();return}if(k==="k"){recapShow();return}if(k==="j"){raidAlert("NIGHTSHAMBLER",42);return}if(k==="z"){zombieAlert();return}if(k==="y"){textBump({user:"braineater99",text:"i left the tv on for you"});return}if(k==="c"){chatPeek();return}if(k==="t"){takeoverTest();return}if(k==="x"){toggleView();return}if(k==="u"){subAlert(["BRAINEATER99","VHS_GHOUL"][Math.random()*2|0],Math.random()<.5?1:6);return}if(k==="g"){giftAlert("NIGHTSHAMBLER",Math.random()<.5?2:20);return}if(k==="v"){voteStart();return}if(k==="l"){weatherTest();return}if(k==="f"){followAlert(["BRAINEATER99","VHS_GHOUL","NIGHTSHAMBLER"][Math.random()*3|0]);return}if(k.length===1&&"+=-_m".indexOf(k)>=0){audKey(k);return}
   if(k==="e")toggleEd();else if(k==="escape")$("ed").hidden=true;
   else if(k==="arrowup"||k==="w"||k==="n"){e.preventDefault();step(1)}
   else if(k==="arrowdown"||k==="s"||k==="p"){e.preventDefault();step(-1)}

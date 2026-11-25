@@ -7,12 +7,29 @@ A small Linux server opens the page in Chrome and streams it to Kick around the 
 
 Every channel runs on a fixed schedule, so everyone watching sees the same show at the same time.
 
+> **Status: retired (Nov 2026).** ZTV ran on Kick in November 2026 until Kick objected to a channel that streams 24/7, so it's no longer live. The code is kept here as it was on its last day. Everything still runs locally: open the page in a browser to see it.
+
+## Screenshots
+
+![The ZTV guide: a TV window, now playing, up next, and the channel grid with the tuned channel pinned on top](docs/screenshots/guide.png)
+
+| | |
+|---|---|
+| ![Watch view: a big picture with the next 12 hours beside it](docs/screenshots/watch-view.png) | ![Late night: the guide after midnight](docs/screenshots/late-night.png) |
+| **Watch view** (`!fullscreen`) | **Late night** after midnight |
+| ![Four takeovers: the moon, Lost & Found, a viewer bulletin and the static tunnel](docs/screenshots/takeovers.png) | ![Pre-roll bumpers: house rules, snack bar, back to our program, and a Coming Attractions card](docs/screenshots/pre-roll-bumpers.png) |
+| **Takeovers** | **Pre-roll bumpers** and the Coming Attractions card |
+| ![A follow alert over the guide](docs/screenshots/follow-alert.png) | ![The pixel-art channel icon set](docs/screenshots/channel-icons.png) |
+| **Follow alert** | **Channel icons** |
+
+*The TV window in the guide shot is playing one of ZTV's own bumpers. The archive.org shows themselves aren't in the screenshots.*
+
 ## What's in it
 
 - **Channel guide and Watch view.** A scrolling cable guide, plus a big-picture view with the next 12 hours (`!fullscreen`).
 - **Kick chat control.** Viewers change channels, surf, vote and request shows. ZTV reads chat without logging in.
 - **Alerts.** Follows, subs, gift subs (a big "gift bomb" for 5 or more) and raids.
-- **Network extras.** Takeovers (including ZTV Explains, Lost & Found, ZTV Is Your Friend and Picture This photo bumps), station IDs, bumpers, ZTV Classifieds ad breaks, a parody ZOMBIE ALERT, the Z Weather break with real forecasts, Viewer's Choice votes, chat text bumps, Z Bucks and a daily recap card.
+- **Network extras.** Takeovers (including ZTV Explains, Lost & Found, ZTV Is Your Friend), station IDs, bumpers, ZTV Classifieds ad breaks, a parody ZOMBIE ALERT, the Z Weather break with real forecasts, Viewer's Choice votes, chat text bumps, Z Bucks and a daily recap card.
 - **A broadcast day.** A late night look after midnight, dead air at 3 AM, a sign-off at 3:58 AM, and stand-by cards around the daily restarts.
 
 ## Try it on your PC
@@ -30,7 +47,6 @@ Preview keys:
 | B | bumper | V | Viewer's Choice vote |
 | F / U / G | follow / sub / gift alert | J | raid alert |
 | A | ad break | Z | zombie alert |
-| H | Picture This photo bump | | |
 | D | 3 AM dead air | O / I | sign-off / sign-on |
 | K | recap card | Y | chat text bump |
 | + - M | volume / mute | C | chat status |
@@ -52,7 +68,7 @@ Preview keys:
 - `!skip` ends a request
 - `!givezb name 100`
 - `!unmute` · `!mute` · `!vol 80` sound on the stream
-- `!startvote` · `!weather` · `!takeover` (or `!takeover photo`, `explainer`, `missing`, `friend`, `moon`...)
+- `!startvote` · `!weather` · `!takeover` (or `!takeover explainer`, `missing`, `friend`, `moon`...)
 - Tests: `!testfollow` · `!testsub` · `!testgift 10` · `!testraid name 25` · `!ad` · `!alert` · `!deadair` · `!signoff` · `!signon` · `!recap` · `!latenight`
 
 Mods skip the cooldowns.
@@ -128,7 +144,6 @@ Other settings live in their own files:
 - `data/takeovers.js`: takeover lines and looks, plus the ZTV Explains, Lost & Found and ZTV Is Your Friend scripts
 - `data/bumpers.js`: bumpers, both the text cards and the pixel-art video bumpers in `bumpers/` (made with `tools/video-bumpers/`)
 - `data/ads.js`: classifieds listings and fake commercials
-- `data/photos.js`: Picture This photo topics and captions (public domain photos from Wikimedia Commons)
 - `data/kick.js`: Kick chat
 
 ## Project layout
@@ -148,5 +163,4 @@ Other settings live in their own files:
 ## Notes
 
 - All programming streams straight from the Internet Archive and belongs to its uploaders and rights holders. If a rights holder asks, remove the item from `data/catalog.js`.
-- Picture This only uses photos marked public domain or CC0 on Wikimedia Commons, credited on screen.
 - ZTV's own art, music, bumpers, ads and on-screen copy are original. The fake commercials and the zombie alert are parodies and are labeled that way on screen.

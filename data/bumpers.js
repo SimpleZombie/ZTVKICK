@@ -9,6 +9,12 @@ var BUMPERS=[
   {on:true,type:"video",src:"bumpers/right-back.mp4",weight:1.5},
   {on:true,type:"video",src:"bumpers/late-room.mp4",weight:1.5,late:true},   /* late:true = only between midnight and 5 AM */
   {on:true,type:"video",src:"bumpers/surf.mp4",weight:1.5},
+  /* pre-roll set: film-print pieces, like what runs before the feature at a repertory theater */
+  {on:true,type:"video",src:"bumpers/house-rules.mp4",weight:1.2},
+  {on:true,type:"video",src:"bumpers/snack-bar.mp4",weight:1.2},
+  {on:true,type:"video",src:"bumpers/leader.mp4",weight:1.2},
+  {on:true,type:"video",src:"bumpers/back-to-program.mp4",weight:1.2},
+  {on:true,type:"card",skin:"preroll",head:"COMING ATTRACTIONS",big:"{show}",foot:"NEXT ON CH {num} · {channel}"},
   /* cards */
   {on:true,type:"card",skin:"network",head:"ZTV NETWORK IDENTIFICATION",big:"YOU ARE WATCHING ZTV",foot:"INDEPENDENT TELEVISION · ALL NIGHT"},
   {on:true,type:"card",skin:"network",head:"ZTV",big:"NOW IN COLOR",foot:"MOST OF THE TIME"},

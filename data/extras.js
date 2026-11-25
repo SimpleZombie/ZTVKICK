@@ -90,7 +90,7 @@ var EXTRAS={
     secsPerChar:.16   // scroll speed (lower = faster)
   },
   playback:{
-    lightOverMins:60  // shows this long or longer use archive.org's lighter copy when there is one (buffers much less)
+    lightOverMins:0   // shows this long or longer use archive.org's lighter copy when there is one (0 = always: smoother playback, slightly softer picture)
   },
   weather:{
     on:true,

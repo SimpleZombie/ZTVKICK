@@ -21,7 +21,7 @@ var TAKEOVER_SETTINGS={
   maxMins:35,       // longest wait (it picks a random time in between)
   secs:9,           // how long each one stays up
   drone:true,       // low hum underneath (follows the ZTV volume)
-  styles:["brackets","ident","tunnel","poster","moon","service","notice","offair","explainer","missing","friend","explainer","friend","photo","photo","photo"]   // listed twice = comes up more often
+  styles:["brackets","ident","tunnel","poster","moon","service","notice","offair","explainer","missing","friend","explainer","friend"]   // listed twice = comes up more often
 };
 
 var LINES=[

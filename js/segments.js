@@ -51,10 +51,10 @@ function segOrgan(){
 
 /* ---- pieces used by several segments ---- */
 function segBars(label){
-  var top=["#c0c0c0","#c0c000","#00c0c0","#00c000","#c000c0","#c00000","#0000c0"],mid=["#0000c0","#131313","#c000c0","#131313","#00c0c0","#131313","#c0c0c0"];
+  var top=["#c0c0c0","#0eb25b","#00c0c0","#0eb25b","#238d55","#c00000","#0000c0"],mid=["#0000c0","#131313","#238d55","#131313","#00c0c0","#131313","#c0c0c0"];
   return'<div class="sg sg-bars"><div class="sgb-top">'+top.map(function(c){return'<i style="background:'+c+'"></i>'}).join("")+'</div>'+
     '<div class="sgb-mid">'+mid.map(function(c){return'<i style="background:'+c+'"></i>'}).join("")+'</div>'+
-    '<div class="sgb-bot"><i style="background:#00214c"></i><i style="background:#fff"></i><i style="background:#32006a"></i><i style="background:#131313;flex:3"></i><i style="background:#090909"></i><i style="background:#1d1d1d"></i><i style="background:#131313"></i></div>'+
+    '<div class="sgb-bot"><i style="background:#00214c"></i><i style="background:#fff"></i><i style="background:#144e2f"></i><i style="background:#131313;flex:3"></i><i style="background:#090909"></i><i style="background:#1d1d1d"></i><i style="background:#131313"></i></div>'+
     (label?'<div class="sgb-id">'+label+'</div>':'')+'</div>'}
 function segMark(){return document.querySelector(".mark").outerHTML}
 function segTimeCT(){var c=ctNow(),h=c.h%12||12;return h+":"+String(c.m).padStart(2,"0")+(c.h<12?" AM":" PM")}
@@ -93,8 +93,8 @@ function deadAir(){
 
 /* Original ZTV station mascots: Midge the moth and Channel Zero, the overworked CRT. */
 function segMascot(which){
-  if(which===1)return '<div class="sg-mascot crt-mascot"><svg viewBox="0 0 120 120"><rect x="18" y="20" width="84" height="72" rx="12" fill="#b7e36a" stroke="#171719" stroke-width="6"/><rect x="27" y="29" width="66" height="52" rx="6" fill="#151719"/><path d="M43 54Q49 43 56 54T69 54T82 54" fill="none" stroke="#b7e36a" stroke-width="5"/><path d="M60 92V104M44 105H76" stroke="#b7e36a" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="17" r="5" fill="#b7e36a"/><circle cx="82" cy="17" r="5" fill="#b7e36a"/></svg><small>CHANNEL ZERO</small></div>';
-  return '<div class="sg-mascot moth-mascot"><svg viewBox="0 0 120 120"><path d="M48 52Q5 6 13 48Q20 75 51 68M72 52Q115 6 107 48Q100 75 69 68" fill="#b7e36a" stroke="#151719" stroke-width="5"/><path d="M60 40Q37 48 42 82Q60 110 78 82Q83 48 60 40Z" fill="#d6d2c2" stroke="#151719" stroke-width="5"/><circle cx="52" cy="66" r="5" fill="#151719"/><circle cx="68" cy="66" r="5" fill="#151719"/><path d="M54 82Q60 87 66 82" fill="none" stroke="#151719" stroke-width="3"/><path d="M55 41L48 25M65 41L72 25" stroke="#b7e36a" stroke-width="4" stroke-linecap="round"/></svg><small>MIDGE / NIGHT SHIFT</small></div>';
+  if(which===1)return '<div class="sg-mascot crt-mascot"><svg viewBox="0 0 120 120"><rect x="18" y="20" width="84" height="72" rx="12" fill="#5bf2a1" stroke="#171719" stroke-width="6"/><rect x="27" y="29" width="66" height="52" rx="6" fill="#151719"/><path d="M43 54Q49 43 56 54T69 54T82 54" fill="none" stroke="#5bf2a1" stroke-width="5"/><path d="M60 92V104M44 105H76" stroke="#5bf2a1" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="17" r="5" fill="#5bf2a1"/><circle cx="82" cy="17" r="5" fill="#5bf2a1"/></svg><small>CHANNEL ZERO</small></div>';
+  return '<div class="sg-mascot moth-mascot"><svg viewBox="0 0 120 120"><path d="M48 52Q5 6 13 48Q20 75 51 68M72 52Q115 6 107 48Q100 75 69 68" fill="#5bf2a1" stroke="#151719" stroke-width="5"/><path d="M60 40Q37 48 42 82Q60 110 78 82Q83 48 60 40Z" fill="#bbddcb" stroke="#151719" stroke-width="5"/><circle cx="52" cy="66" r="5" fill="#151719"/><circle cx="68" cy="66" r="5" fill="#151719"/><path d="M54 82Q60 87 66 82" fill="none" stroke="#151719" stroke-width="3"/><path d="M55 41L48 25M65 41L72 25" stroke="#5bf2a1" stroke-width="4" stroke-linecap="round"/></svg><small>MIDGE / NIGHT SHIFT</small></div>';
 }
 
 /* ---- 3b. station ident: short, dry network messages between programs ---- */
@@ -200,7 +200,7 @@ function recapShow(){segRun({sound:function(s){tkDrone(s);return null},scenes:fu
 /* ---- 7. sign-off at 3:58 AM and sign-on after the 4 AM restart ---- */
 function signOffHtml(){
   var tr="",i;for(i=0;i<34;i++){var x=i*3.1,h=8+Math.random()*16;tr+='<path d="M'+x+' 60 L'+(x+1.6)+' '+(60-h)+' L'+(x+3.2)+' 60Z"/>'}
-  return'<div class="sg sg-so"><svg class="sgs-sky" viewBox="0 0 100 60" preserveAspectRatio="xMidYMax slice"><circle cx="78" cy="14" r="6" fill="#d9ffc4"/><g fill="#020604">'+tr+'</g></svg>'+
+  return'<div class="sg sg-so"><svg class="sgs-sky" viewBox="0 0 100 60" preserveAspectRatio="xMidYMax slice"><circle cx="78" cy="14" r="6" fill="#c8fbe0"/><g fill="#020604">'+tr+'</g></svg>'+
     '<div class="sgs-flag">'+segMark()+'</div><div class="sgs-t">THANK YOU FOR WATCHING<small>ZTV RETURNS AT 4:00 AM CENTRAL</small></div></div>'}
 function signOff(){
   var stop=[],toHour=3600000-(Date.now()%3600000)+15000;

@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ZTV on Kick</title>
+<meta name="description" content="ZTV: a 24/7 retro cable channel of old TV from archive.org, live on kick.com/simplezombie.">
 <link rel="icon" type="image/svg+xml" href="assets/ztv-bug.svg">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=VT323&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css?v=20">
 </head>
 <body>
 <script>if(/[?&]bc=1/.test(location.search))document.body.classList.add("bc")</script>
 <header>
   <div class="logo">
-    <svg viewBox="0 0 270 92" role="img" aria-label="ZTV — Zombie Television" class="mark ztv-network-mark">
+    <svg viewBox="0 0 270 92" role="img" aria-label="ZTV, Zombie Television" class="mark ztv-network-mark">
       <path d="M12 16 L251 12 L258 68 L21 74 L7 65 Z" fill="#121611" stroke="#9eab83" stroke-width="2.2"/>
       <path d="M16 20 L246 17 L251 63 L24 69 L13 62 Z" fill="#0a0d0b"/>
       <path d="M29 28 L92 25 L91 36 L52 55 L94 54 L94 63 L29 64 L28 53 L68 35 L29 37 Z" fill="#e1dfcf"/>
@@ -22,14 +23,14 @@
       <path d="M18 22 l-4 4 m83 -1 l-3 5 m72 -4 l-2 5 m75 -8 l3 5 M44 66 l-8 3 M190 62 l5 4" stroke="#090b08" stroke-width="2.5"/>
       <text x="30" y="86" font-family="monospace" font-size="8" letter-spacing="3.2" fill="#aab396">ZOMBIE TELEVISION</text>
     </svg>
-    <div class="tag">ZTV Network<b>Independent Television · 24/7 on Kick</b></div>
+    <div class="tag">ZTV Network<b>Type !ch and a number to change the channel</b></div>
   </div>
   <div id="fol" aria-live="polite"><span class="fh" id="ficon"></span><div class="ft"><small id="flabel">NEW FOLLOWER</small><b id="fname"></b></div></div>
   <div class="fcount" id="fcount" hidden></div>
   <div class="clock"><span id="time">--:--</span><div class="cside"><b id="tz"></b><small id="date"></small></div></div>
 </header>
 
-<section class="stage">
+<section class="stage" role="main">
   <div class="tvcol">
     <div class="screen">
       <div class="nosignal"><b>ZTV</b><span>PLEASE STAND BY...</span></div>
@@ -65,6 +66,7 @@
 
 <section class="guide">
   <div class="row times"><div>CHANNEL</div><div id="t0"></div><div id="t1"></div><div id="t2"></div><div id="t3"></div></div>
+  <div class="pin" id="pin" aria-label="Tuned channel"></div>
   <div class="rows"><div class="scroll" id="rows"></div></div>
 </section>
 
@@ -90,7 +92,6 @@
 <script src="data/bumpers.js"></script>
 <script src="data/takeovers.js"></script>
 <script src="data/ads.js"></script>
-<script src="data/photos.js"></script>
 <script src="data/extras.js"></script>
 <script src="data/kick.js"></script>
 <script src="js/icons.js"></script>
@@ -102,7 +103,6 @@
 <script src="js/vote.js"></script>
 <script src="js/weather.js"></script>
 <script src="js/segments.js"></script>
-<script src="js/photos.js"></script>
 <script src="js/community.js"></script>
 <script src="js/chat.js"></script>
 <script src="js/app.js"></script>

@@ -24,7 +24,7 @@ function voteTally(){var n=[0,0,0];for(var u in VOTE.votes)n[VOTE.votes[u]]++;re
 function voteDraw(){
   var n=voteTally(),tot=n[0]+n[1]+n[2],max=Math.max.apply(null,n);
   VOTE.opts.forEach(function(o,i){var b=$("vb"+i),k=$("vk"+i),box=$("vo"+i);if(!b)return;
-    b.style.width=(tot?n[i]/tot*100:0)+"%";k.textContent=n[i]+(n[i]===1?" VOTE":" VOTES")+(tot?" · "+Math.round(n[i]/tot*100)+"%":"");
+    b.style.transform="scaleX("+(tot?n[i]/tot:0)+")";k.textContent=n[i]+(n[i]===1?" VOTE":" VOTES")+(tot?" · "+Math.round(n[i]/tot*100)+"%":"");
     box.classList.toggle("lead",tot>0&&n[i]===max)})}
 function voteTick(){var s=Math.max(0,Math.ceil((VOTE.end-Date.now())/1000)),t=$("vtime");if(t)t.textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");if(s<=0)voteEnd()}
 function voteCast(user,n){

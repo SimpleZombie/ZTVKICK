@@ -1,6 +1,44 @@
 # ZTV changelog
 
+## Retired
+- ZTV came off Kick (Kick didn't allow a 24/7 channel). Screenshots added to the README; the code is archived as of its last broadcast.
+
+## One green
+- Every color on the channel now comes from one phosphor green (hue 148): guide, info panel, cards, takeovers, alerts, late night, and the pre-roll bumpers and Coming Attractions card. The old purple late-night tint is a deeper green now.
+- The ZTV mark is unchanged.
+- The old olive stylesheet is saved in docs/design/previous-olive-style.css.
+
+## Pre-roll bumpers and a lit guide
+- Four new film-print bumpers in the spirit of a repertory theater's pre-show: House Rules (talk in chat, type !ch), Snack Bar, Countdown Leader (with the 2-pop) and Back to Our Program. Original copy and music, rendered by tools/video-bumpers/film.py.
+- A Coming Attractions card that fills in the next show from the schedule.
+- Guide: shows on now are lit (bright text, green edge) instead of filled, so only the pinned channel's row is solid.
+- Header line under ZTV Network now tells viewers how to change the channel.
+
+## Polish pass (readability at small player sizes)
+- The show title is now the biggest text in the info panel; the channel name steps down.
+- The channel blurb shows only its first sentence, a little larger.
+- The archive.org link under the title is gone; it just shows the length.
+- One type scale (5 sizes) and one set of text colors for the guide: 9 sizes on screen instead of 16.
+- Visible keyboard focus, better contrast on the red badge, the dim cells and the fake-ad starburst.
+- Vote bars and two takeover animations move with transform instead of layout, which is lighter on the server's CPU.
+
+## Pinned channel and local fonts
+- The tuned channel's row now stays pinned at the top of the guide while the other channels scroll under it.
+- Oswald and VT323 are served from the ZTV server (assets/fonts) instead of Google Fonts, so the stream never falls back to Arial.
+- Tried and rejected: the yellow "video store" theme (kept in docs/design/rejected).
+
+## Chrome cache in RAM
+- Chrome's video cache now lives in RAM (/dev/shm, capped at 300 MB) instead of on the disk. Cuts disk wait on busy hosts so the encoder doesn't fall behind.
+
+## Bumper and takeover style pass
+- Took the Picture This photo takeovers out.
+- Every takeover, card bumper and after-hours bump now uses one look: near-black, ZTV green, cream text, VT323 and Oswald. No more cream paper, purple or brown screens.
+- Card bumpers size to their own box, so they fit in the guide's small video window instead of overflowing.
+- ZTV4ZOMBIES poster uses a pixel-art zombie that matches the channel icons and video bumpers.
+- The surf video bumper's synthwave grid is now green.
+
 ## Current (Nov 2026)
+- Tech Support searches now have to tie back to TechTV, ZDTV or their hosts, with a filter for religious content, and the filler has `--redo` to start a channel over.
 - Weekly dead video check (`server/check-videos.py`, Sundays 5 AM Central): shows that vanished from archive.org are taken out of the schedule after two failed checks in a row, and put back if they return.
 - Five pixel-art video bumpers (Night Drive, Signal, Right Back, Late Room, Surf) with their own sound, and a cleaned-up set of text cards. Bumpers no longer repeat within the last few, and some only run late at night.
 - Fix: the stream could get stuck muted after a show failed to start; it now never mutes for that, turns sound back on by itself, and mods have `!unmute`, `!mute` and `!vol`.

@@ -45,8 +45,9 @@ chrome_loop(){
   mkdir -p "$PROFILE"
   while true; do
     rm -f "$PROFILE"/Singleton*; touch "$XDG_RUNTIME_DIR/chrome.start"
+    CACHE=/dev/shm/ztv-cache-$(id -u); rm -rf "$CACHE"; mkdir -p "$CACHE"   # video cache lives in RAM, not on the disk
     google-chrome --kiosk --start-fullscreen --window-position=0,0 --window-size="$W,$H" \
-      --user-data-dir="$PROFILE" --no-first-run --no-default-browser-check --password-store=basic \
+      --user-data-dir="$PROFILE" --disk-cache-dir="$CACHE" --disk-cache-size=314572800 --no-first-run --no-default-browser-check --password-store=basic \
       --noerrdialogs --disable-infobars --disable-session-crashed-bubble --disable-features=Translate,MediaRouter \
       --autoplay-policy=no-user-gesture-required \
       --disable-gpu --disable-dev-shm-usage \

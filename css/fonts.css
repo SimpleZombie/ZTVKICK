@@ -1,0 +1,7 @@
+/* Fonts are served from the ZTV server itself, so the stream never falls back to Arial if Google Fonts is slow. */
+@font-face{font-family:"Oswald";font-weight:500;font-display:block;src:url(../assets/fonts/oswald-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Oswald";font-weight:600;font-display:block;src:url(../assets/fonts/oswald-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Oswald";font-weight:700;font-display:block;src:url(../assets/fonts/oswald-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"VT323";font-weight:400;font-display:block;src:url(../assets/fonts/vt323-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Shrikhand";font-weight:400;font-display:block;src:url(../assets/fonts/shrikhand-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-weight:800;font-display:block;src:url(../assets/fonts/jost-latin-800-normal.woff2) format("woff2")}

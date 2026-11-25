@@ -163,10 +163,10 @@ def mini(kind,a,t):
     elif kind=="bars":
         for i,c in enumerate(BARS):rect(a,i*W/7,0,W/7+1,H,c)
     elif kind=="grid":
-        vgrad(a,0,100,(14,6,25),(42,15,61));a[100:]=(20,6,31)
+        vgrad(a,0,100,(4,10,7),(12,32,20));a[100:]=(6,13,9)
         for x in range(-200,520,24):
-            for k in range(80):rect(a,160+(x-160)*(k/80),100+k,1,1,(160,58,168))
-        for y in (102,106,112,121,134,152,176):rect(a,0,y,W,1,(160,58,168))
+            for k in range(80):rect(a,160+(x-160)*(k/80),100+k,1,1,(70,196,118))
+        for y in (102,106,112,121,134,152,176):rect(a,0,y,W,1,(70,196,118))
 SURF=[("forest",12),("city",101),("space",50),("desert",100),("sea",54),("grid",55),("bars",65),("city",64),("forest",202)]
 def surf(t):
     a=canvas();step=.42;i=int(t/step)
